@@ -491,6 +491,7 @@ const RecordPenjualanHelper = () => {
     return {
         fields,
         success, setSuccess,
+        info,
         openModalBarang, setOpenModalBarang,
         cetakLaporanModal, setCetakLaporanModal,
         dataRecordPenjualan,

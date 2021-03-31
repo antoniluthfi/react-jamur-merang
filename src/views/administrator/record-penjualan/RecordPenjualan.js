@@ -30,7 +30,8 @@ const RecordPenjualan = () => {
     const {
         fields,
         success, setSuccess,
-        openModalBarang, setOpenModalBarang,
+        info,
+        openModalBarang,
         cetakLaporanModal, setCetakLaporanModal,
         dataRecordPenjualan,
         loadDataRecordPenjualan,
@@ -108,7 +109,7 @@ const RecordPenjualan = () => {
                                     'kunjungan_efektif':
                                     (item => <td className="text-center">{item.kunjungan_efektif}</td>),
                                     'nominal':
-                                    (item => <td className="text-right">{item.nominal == null ? null : `Rp. ${item.nominal}`}</td>),
+                                    (item => <td className="text-right">{item.nominal == null ? null : `Rp. ${new Intl.NumberFormat(['ban', 'id']).format(item.nominal)}`}</td>),
                                     'show_details':
                                     (item, index)=>{
                                         return (
@@ -416,6 +417,85 @@ const RecordPenjualan = () => {
                     <CButton color="success" onClick={() => submitHandler('cetak laporan')}>Submit</CButton>{' '}
                     <CButton color="secondary" onClick={() => closeModalHandler('cetak laporan')}>Cancel</CButton>
                 </CModalFooter>
+            </CModal>
+
+            {/* view data */}
+            <CModal 
+                show={info} 
+                onClose={() => closeModalHandler('view')}
+                color="info"
+                closeOnBackdrop={false}
+            >
+                <CModalHeader closeButton>
+                    <CModalTitle>View Data</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                    {loadCurrentDataRecordPenjualan ? null :
+                        <>
+                            <CRow>
+                                <CCol xs="12" md="12">
+                                    <CLabel htmlFor="nama-sales">Nama Sales</CLabel>
+                                    <CInput type="text" name="sales" id="nama-sales" value={currentDataRecordPenjualan.user.name} disabled />
+                                </CCol>
+                            </CRow>  
+
+                            <CRow>
+                                <CCol xs="12" md="6">
+                                    <CFormGroup>
+                                        <CLabel htmlFor="area">Area</CLabel>
+                                        <CInput type="text" name="area" id="area" value={currentDataRecordPenjualan.area} placeholder="Masukkan Area" disabled />
+                                    </CFormGroup>
+                                </CCol>
+                                <CCol xs="12" md="6">
+                                    <CLabel htmlFor="kategori-pembelian">Kategori Pembelian</CLabel>
+                                    <CInput type="text" name="kategori_pembelian" id="kategori-pembelian" value={currentDataRecordPenjualan.kategori_pembelian.nama} placeholder="Masukkan Area" disabled />
+                                </CCol>
+                            </CRow>
+
+                            <CRow>
+                                <CCol xs="12" md="6">
+                                    <CLabel htmlFor="panggilan">Kunjungan</CLabel>
+                                    <CInput type="number" min="1" name="kunjungan" id="panggilan" value={currentDataRecordPenjualan.kunjungan} placeholder="Kunjungan" disabled />
+                                </CCol>
+                                <CCol xs="12" md="6">
+                                    <CLabel htmlFor="kunjungan">Kunjungan Efektif</CLabel>
+                                    <CInput type="number" min="1" name="kunjungan_efektif" id="kunjungan" value={currentDataRecordPenjualan.kunjungan_efektif} placeholder="Kunjungan Efektif" disabled />
+                                </CCol>
+                            </CRow><br/>
+
+                            {currentDataRecordPenjualan.barang == null ? null : 
+                                <CRow>
+                                    <CCol xs="12" md="12">
+                                        <table className="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th className="text-center">No</th>
+                                                    <th className="text-center">Nama Barang</th>
+                                                    <th className="text-center">Harga</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {currentDataRecordPenjualan.barang.map((item, i) => (
+                                                    <tr key={i}>
+                                                        <td className="text-center">{i + 1}</td>
+                                                        <td className="text-center">{item.detail_barang.nama_barang}</td>
+                                                        <td className="text-right">Rp. {new Intl.NumberFormat(['ban', 'id']).format(item.detail_barang.harga_retail * item.jumlah)}</td>
+                                                    </tr>
+                                                ))}
+                                                <tr>
+                                                    <th className="text-center">#</th>
+                                                    <th className="text-center">Total</th>
+                                                    <th className="text-right">Rp. {new Intl.NumberFormat(['ban', 'id']).format(currentDataRecordPenjualan.nominal)}</th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </CCol>
+                                </CRow>
+                            }
+                        </>                  
+                    }
+                </CModalBody>
+                <CModalFooter></CModalFooter>
             </CModal>
         </>
     )
