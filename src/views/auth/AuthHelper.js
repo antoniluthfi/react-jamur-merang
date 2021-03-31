@@ -51,7 +51,7 @@ const AuthHelper = () => {
         await axios.post(`${baseurl}/logout`, {}, {
             headers: {
                 'Accept': 'Application/json',
-                'Authorization': `Bearer ${localStorage.getItem('sip-token')}`
+                'Authorization': `Bearer ${localStorage.getItem('app-token')}`
             }
         })
         .then(response => {

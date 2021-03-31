@@ -199,7 +199,7 @@ const RecordPenjualanHelper = () => {
                     nominal: result.nominal,
                 });
 
-                setCurrentSales({ name: ''});
+                setCurrentSales({ name: result.user.name });
             } else if(actionModal === 'tambah barang') {
                 setInputBarang([{
                     id_record_penjualan: result.id, 

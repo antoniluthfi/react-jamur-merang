@@ -68,7 +68,7 @@ const Login = () => {
                             <CCard className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
                                 <CCardBody className="text-center">
                                     <div>
-                                        <h2>Aplikasi Sales</h2>
+                                        <h2>Barokah Jamur Merang</h2>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                                         labore et dolore magna aliqua.</p>
                                         <Link to="/register">

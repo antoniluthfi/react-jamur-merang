@@ -108,7 +108,10 @@ const DataBarangHelper = () => {
         .then(response => {
             const result = response.data.result;
             setCurrentDataBarang(result);
-            setInput({ nama_barang: result.nama_barang });
+            setInput({ 
+                nama_barang: result.nama_barang, 
+                harga_retail: result.harga_retail 
+            });
         })
         .catch(error => {
             console.log(error);

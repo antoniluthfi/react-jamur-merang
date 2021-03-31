@@ -209,7 +209,7 @@ const RecordPenjualan = () => {
                             </CCol>
                         </CRow>
 
-                        <CRow>
+                        <CRow className="mt-2">
                             <CCol xs="12" md="6">
                                 <CFormGroup>
                                     <CLabel htmlFor="area">Area</CLabel>
@@ -482,6 +482,7 @@ const RecordPenjualan = () => {
                                                         <td className="text-right">Rp. {new Intl.NumberFormat(['ban', 'id']).format(item.detail_barang.harga_retail * item.jumlah)}</td>
                                                     </tr>
                                                 ))}
+                                                
                                                 <tr>
                                                     <th className="text-center">#</th>
                                                     <th className="text-center">Total</th>

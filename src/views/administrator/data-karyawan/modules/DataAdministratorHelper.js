@@ -131,7 +131,14 @@ const DataAdministratorHelper = () => {
         .then(response => {
             const result = response.data.result;
             setCurrentDataAdministrator(result);
-            setInput({ nama: result.nama });
+            setInput({
+                name: result.name,
+                email: result.email,
+                password: result.passwords,
+                hak_akses: result.hak_akses,
+                nomorhp: result.nomorhp,
+                alamat: result.alamat
+            });
         })
         .catch(error => {
             console.log(error);

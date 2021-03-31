@@ -76,7 +76,7 @@ const DataBarang = () => {
                                     'nama_barang':
                                     (item => <td className="text-center">{item.nama_barang}</td>),
                                     'harga_retail':
-                                    (item => <td className="text-center">Rp. {item.harga_retail}</td>),
+                                    (item => <td className="text-center">Rp. {new Intl.NumberFormat(['ban', 'id']).format(item.harga_retail)}</td>),
                                     'show_details':
                                     (item, index)=>{
                                         return (
@@ -140,7 +140,7 @@ const DataBarang = () => {
                             <CCol xs="12" md="6">
                                 <CFormGroup>
                                     <CLabel htmlFor="harga-retail">Harga Retail</CLabel>
-                                    <CurrencyFormat thousandSeparator={true} prefix={'Rp.'} customInput={CInput} name="harga_retail" id="harga-retail" value={input.harga_retail} onChange={changeHandler} placeholder="Masukkan Harga" />
+                                    <CurrencyFormat thousandSeparator={true} prefix={'Rp.'} customInput={CInput} name="harga_retail" id="harga-retail" value={input.harga_retail} onChange={changeHandler} placeholder="Masukkan Harga" disabled={formDisabled} />
                                 </CFormGroup>
                             </CCol>
                         </CRow>
