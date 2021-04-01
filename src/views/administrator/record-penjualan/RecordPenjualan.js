@@ -137,7 +137,7 @@ const RecordPenjualan = () => {
                                                 <CButton size="sm" color="success" className="ml-1" onClick={() => getDataRecordPenjualanById(item.id, 'update')}>
                                                     Update
                                                 </CButton>
-                                                {item.barang == null ? 
+                                                {item.barang.length == 0 ? 
                                                     <CButton size="sm" color="warning" className="ml-1" onClick={() => getDataRecordPenjualanById(item.id, 'tambah barang')}>
                                                         Tambah Barang
                                                     </CButton> :

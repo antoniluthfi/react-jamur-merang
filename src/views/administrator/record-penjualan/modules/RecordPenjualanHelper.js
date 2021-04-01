@@ -483,6 +483,8 @@ const RecordPenjualanHelper = () => {
         let sampai;
         if(inputLaporan.sampai == '') {
             sampai = inputLaporan.dari;
+        } else {
+            sampai = inputLaporan.sampai;
         }
 
         window.open(`${process.env.REACT_APP_PUBLIC_URL}/laporan/record-penjualan/${inputLaporan.id_sales}/${inputLaporan.dari}/${sampai}`, '_blank');
